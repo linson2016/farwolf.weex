@@ -21,21 +21,18 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "8.0"
   s.requires_arc = true
   
-
-  s.dependency 'farwolf'
+ 
   s.dependency 'farwolf.business'
   s.dependency 'WeexSDK'
-  #s.dependency 'SDWebImage', '~> 3.8'
- # s.dependency 'WXDevtool'
+  # s.dependency 'farwolf.business', :git => 'https://github.com/farwolf2010/farwolf.business'
+  # s.dependency 'WeexSDK', :git => 'https://github.com/farwolf2010/PlusWeexSDK.git'
+
   s.dependency 'Masonry', '~> 0.6.3'
   s.dependency 'SocketRocket','~> 0.4.2' 
   s.dependency 'RHAddressBook'
- # s.dependency 'IQKeyboardManager', '~> 4.0.6'
   s.dependency 'CocoaAsyncSocket', '~> 7.6.2'
   s.dependency 'LPPhotoViewer', '~> 0.2.2'
-
   s.dependency 'HcdDateTimePicker', '~> 1.1.1'
-  # s.dependency 'LMTowDatePicker'
   s.dependency 'zipzap', '~> 8.1.1'
   s.dependency 'WeexPluginLoader', '~> 0.0.1.9.1'
   s.dependency 'LPPhotoViewer', '~> 0.2.2'
