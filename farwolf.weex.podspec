@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
  
 
   s.name         = "farwolf.weex"
-  s.version      = "1.0.1"
+  s.version      = "1.0.2"
   s.summary      = "Handle some data."
   s.description  = <<-DESC
                     Handle the data.
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.homepage     = "http://csdn.net/veryitman"
   s.license      = "MIT"
   s.author             = { "veryitman" => "veryitman@126.com" }
- s.source       = { :git => "https://github.com/farwolf2010/farwolf.weex.git", :tag => "1.0.1" }
+ s.source       = { :git => "https://github.com/farwolf2010/farwolf.weex.git", :tag => "1.0.2" }
   s.source_files  = "Source", "farwolf.weex/**/*.{h,m,mm,c}"
   s.exclude_files = "Source/Exclude"
   s.resources = 'farwolf.weex/resources/storyboard/**','farwolf.weex/resources/image/**','farwolf.weex/resources/xib/**'
@@ -40,7 +40,7 @@ Pod::Spec.new do |s|
   s.dependency  'ZipArchive', '~> 1.4.0'
 
     s.ios.vendored_frameworks = '*.framework'
-  s.ios.vendored_libraries = '*.a'
+  # s.ios.vendored_libraries = '*.a'
  
 
 end
