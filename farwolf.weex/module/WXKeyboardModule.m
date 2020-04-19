@@ -43,24 +43,24 @@ WX_EXPORT_METHOD(@selector(hide:))
     self.onshow(@{@"height":@(h)}, true);
     
 }
+
 - (void)keyboardWillBeHiden:(NSNotification *)notification
 {
      self.onhide(@{}, true);
 }
 
--(BOOL)hide:(WXModuleCallback)callback{
-    dispatch_async(dispatch_get_main_queue(), ^{
-       BOOL t=  [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-        if(callback)
-        callback(@{@"res":@(t)});
-        
-    });
-    
-}
-
+ 
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
+-(void)hide:(WXModuleCallback)callback{
+    dispatch_async(dispatch_get_main_queue(), ^{
+       BOOL t=  [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+        if(callback)
+        callback(@{@"res":@(t)});
+
+    });
+}
 @end
