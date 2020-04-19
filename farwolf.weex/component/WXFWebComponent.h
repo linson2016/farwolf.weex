@@ -6,7 +6,7 @@
 //
 //
 
-#import <WeexSDK/WeexSDK.h>
+#import "WeexSDK.h"
 #import "WXWebComponent.h"
 @interface WXFWebComponent : WXWebComponent
 //@property(nonatomic,strong)NSString*s;

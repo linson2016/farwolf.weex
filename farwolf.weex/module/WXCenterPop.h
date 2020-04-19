@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <WeexSDK/WXModuleProtocol.h>
+#import "WXModuleProtocol.h"
 #import "WeexFactory.h"
 #import "Weex.h"
 #import "WXNormalViewContrller.h"

@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <WeexSDK/WeexSDK.h>
+#import "WeexSDK.h"
 @interface WXUpdateModule : NSObject<WXModuleProtocol>
 
 @end

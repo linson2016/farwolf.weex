@@ -6,7 +6,7 @@
 //
 //
 
-#import <WeexSDK/WeexSDK.h>
+#import "WeexSDK.h"
 
 @interface WXFPicker : WXComponent<UIPickerViewDelegate, UIPickerViewDataSource>
 @property(nonatomic,strong)NSArray *data;

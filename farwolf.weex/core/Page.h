@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <WeexSDK/WXSDKInstance.h>
-#import "WeexSDK/WXSDKEngine.h"
-#import "WeexSDK/WXAppConfiguration.h"
-#import "WeexSDK/WXImgLoaderProtocol.h"
+#import "WXSDKInstance.h"
+#import "WXSDKEngine.h"
+#import "WXAppConfiguration.h"
+#import "WXImgLoaderProtocol.h"
 #import "farwolf.h"
-#import "WeexSDK/WXBaseViewController.h"
+#import "WXBaseViewController.h"
 @interface Page : NSObject
 @property (nonatomic, weak) WXSDKInstance *instance;
 @property (nonatomic, strong) UIView *weexView;

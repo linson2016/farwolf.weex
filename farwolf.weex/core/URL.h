@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <WeexSDK/WXSDKInstance.h>
+#import "WXSDKInstance.h"
 @interface URL : NSObject
 +(NSURL*)getFinalUrl:(NSString*)url weexInstance:(WXSDKInstance*)weexInstance;
 +(NSMutableArray*)getFinalUrls:(NSMutableArray*)urls weexInstance:(WXSDKInstance*)weexInstance;

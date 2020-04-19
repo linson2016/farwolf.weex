@@ -7,8 +7,8 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <WeexSDK/WXEventModuleProtocol.h>
-#import <WeexSDK/WXModuleProtocol.h>
+#import  "WXEventModuleProtocol.h"
+#import "WXModuleProtocol.h"
 #import "WeexFactory.h"
 @interface WXEventModule : NSObject <WXEventModuleProtocol, WXModuleProtocol>
 

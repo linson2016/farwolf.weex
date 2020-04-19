@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <WeexSDK/WXModuleProtocol.h>
+#import "WXModuleProtocol.h"
 #import "WXNormalViewContrller.h"
 @interface WXSlidPopModule : NSObject<WXModuleProtocol>
 @property(nonatomic)BOOL hasshow;

@@ -9,8 +9,8 @@
 #import "farwolf.h"
 #import "Weex.h"
 
-#import <WeexSDK/WXEventModuleProtocol.h>
-#import <WeexSDK/WXModuleProtocol.h>
+#import "WXEventModuleProtocol.h"
+#import "WXModuleProtocol.h"
 
 @implementation WXFLogModule
 WX_EXPORT_METHOD(@selector(log:))

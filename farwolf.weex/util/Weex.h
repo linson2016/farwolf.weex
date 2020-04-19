@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "WXEventModule.h"
-#import <WeexSDK/WXSDKInstance.h>
+#import "WXSDKInstance.h"
 #import "WXNotifyModule.h"
 #import "WXPhotoModule.h"
 #import "WXNetModule.h"

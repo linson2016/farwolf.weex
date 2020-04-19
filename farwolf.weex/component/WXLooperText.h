@@ -6,7 +6,7 @@
 //
 //
 
-#import <WeexSDK/WeexSDK.h>
+#import "WeexSDK.h"
 #import"GYChangeTextView.h"
 @interface WXLooperText : WXComponent<GYChangeTextViewDelegate>
 @property (nonatomic,strong)GYChangeTextView *textview;

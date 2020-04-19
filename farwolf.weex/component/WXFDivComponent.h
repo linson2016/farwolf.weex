@@ -6,7 +6,7 @@
 //
 //
 
-#import <WeexSDK/WeexSDK.h>
+#import "WeexSDK.h"
 #import "WXDivComponent.h"
 @interface WXFDivComponent : WXDivComponent
 @property (nonatomic) BOOL disabled;

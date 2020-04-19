@@ -8,7 +8,7 @@
 
 #import "WXEventModule.h"
 #import "WXNormalViewContrller.h"
-#import <WeexSDK/WXBaseViewController.h>
+#import "WXBaseViewController.h"
 
 @implementation WXEventModule
 

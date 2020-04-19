@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <WeexSDK/WeexSDK.h>
+#import "WeexSDK.h"
 @interface WXPageModule : NSObject < WXModuleProtocol>
 
 @end

@@ -8,11 +8,11 @@
 
 #import "WXNormalViewContrller.h"
 #import "farwolf_weex.h"
-#import <WeexSDK/WXSDKInstance.h>
-#import "WeexSDK/WXSDKEngine.h"
-#import "WeexSDK/WXAppConfiguration.h"
-#import "WeexSDK/WXUtility.h"
-#import "WeexSDK/WXSDKManager.h"
+#import "WXSDKInstance.h"
+#import "WXSDKEngine.h"
+#import "WXAppConfiguration.h"
+#import "WXUtility.h"
+#import "WXSDKManager.h"
 #import "Masonry.h"
 #import "Weex.h"
 #import "Config.h"

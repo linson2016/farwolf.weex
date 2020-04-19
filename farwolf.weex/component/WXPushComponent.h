@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <WeexSDK/WXDivComponent.h>
+#import "WXDivComponent.h"
 #import <UIKit/UIKit.h>
 #import "farwolf_weex.h"
 @interface WXPushComponent :  WXDivComponent <UIGestureRecognizerDelegate>

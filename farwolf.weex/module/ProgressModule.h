@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <WeexSDK/WXEventModuleProtocol.h>
-#import <WeexSDK/WXModuleProtocol.h>
+#import "WXEventModuleProtocol.h"
+#import "WXModuleProtocol.h"
 #import "WeexFactory.h"
 #import "LockScreenProgress.h"
 @interface ProgressModule : NSObject <WXModuleProtocol>

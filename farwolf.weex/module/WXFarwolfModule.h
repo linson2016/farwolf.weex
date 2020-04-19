@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <WeexSDK/WeexSDK.h>
+#import "WeexSDK.h"
 @interface WXFarwolfModule : NSObject <WXModuleProtocol>
 
 @end

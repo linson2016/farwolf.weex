@@ -5,7 +5,7 @@
 //  Created by 郑江荣 on 2017/12/5.
 //
 
-#import <WeexSDK/WeexSDK.h>
+#import "WeexSDK.h"
 //#import "REFrostedViewController.h"
 
 #import "LGSideMenuController.h"

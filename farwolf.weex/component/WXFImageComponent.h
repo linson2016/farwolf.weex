@@ -6,7 +6,7 @@
 //
 //
 
-#import <WeexSDK/WeexSDK.h>
+#import "WeexSDK.h"
 #import "WXImageComponent.h"
 
 @interface WXFImageComponent : WXImageComponent

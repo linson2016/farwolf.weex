@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <WeexSDK/WeexSDK.h>
+#import "WeexSDK.h"
 #import <MapKit/MapKit.h>
 @interface WXLocationModule : NSObject<WXModuleProtocol,CLLocationManagerDelegate>
 @property (strong,nonatomic) CLLocationManager* locationManager;

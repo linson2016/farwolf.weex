@@ -8,16 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "farwolf.h"
-#import <WeexSDK/WXSDKInstance.h>
-#import "WeexSDK/WXSDKEngine.h"
-#import "WeexSDK/WXAppConfiguration.h"
-#import "WeexSDK/WXImgLoaderProtocol.h"
-#import "WeexSDK/WXModuleProtocol.h"
+#import "WXSDKInstance.h"
+#import "WXSDKEngine.h"
+#import "WXAppConfiguration.h"
+#import "WXImgLoaderProtocol.h"
+#import "WXModuleProtocol.h"
 #import "WXImgLoaderDefaultImpl.h"
 #import "WXNormalViewContrller.h"
 #import "Weex.h"
 #import "WXEventModule.h"
-#import "WeexSDK/WXBaseViewController.h"
+#import "WXBaseViewController.h"
  #import "QRControl.h"
 #import "WXNavBarModule.h"
 #import "WXPage.h"

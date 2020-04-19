@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <WeexSDK/WXEventModuleProtocol.h>
-#import <WeexSDK/WXModuleProtocol.h>
+#import "WXEventModuleProtocol.h"
+#import "WXModuleProtocol.h"
 #import "FPicker.h"
 @interface WXFPickerModule : NSObject <WXModuleProtocol>
 @property(nonatomic,strong)FPicker *p;

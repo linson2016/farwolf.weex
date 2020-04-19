@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <WeexSDK/WXSDKInstance.h>
-#import "WeexSDK/WXSDKEngine.h"
-#import "WeexSDK/WXAppConfiguration.h"
-#import "WeexSDK/WXLog.h"
+#import "WXSDKInstance.h"
+#import "WXSDKEngine.h"
+#import "WXAppConfiguration.h"
+#import "WXLog.h"
 //#import "WeexSDK/WXImgLoaderProtocol.h"
 #import "farwolf.h"
-#import "WeexSDK/WXBaseViewController.h"
+#import "WXBaseViewController.h"
 #import "SRWebSocket.h"
 #import "ErrorControl.h"
 #import "Page.h"

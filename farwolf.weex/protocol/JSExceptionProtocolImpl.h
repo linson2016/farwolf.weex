@@ -6,8 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WeexSDK/WXJSExceptionProtocol.h"
-#import "WeexSDK/WXModuleProtocol.h"
+#import "WXJSExceptionProtocol.h"
+#import "WXModuleProtocol.h"
 @interface JSExceptionProtocolImpl : NSObject<WXJSExceptionProtocol>
 
 @end

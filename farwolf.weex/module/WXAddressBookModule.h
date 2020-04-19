@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <WeexSDK/WXEventModuleProtocol.h>
-#import <WeexSDK/WXModuleProtocol.h>
+#import "WXEventModuleProtocol.h"
+#import "WXModuleProtocol.h"
 #import <RHAddressBook/AddressBook.h>  
 @interface WXAddressBookModule : NSObject<WXModuleProtocol>
 @property(nonatomic,strong)WXModuleKeepAliveCallback readcallback;

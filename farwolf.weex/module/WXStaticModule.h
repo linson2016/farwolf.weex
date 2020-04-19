@@ -6,7 +6,7 @@
 //
 //
 
-#import <WeexSDK/WeexSDK.h>
+#import "WeexSDK.h"
 static NSMutableDictionary *map;
 @interface WXStaticModule :  NSObject < WXModuleProtocol>
 -(id)get:(NSString*)key;

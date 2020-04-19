@@ -6,7 +6,7 @@
 //
 //
 
-#import <WeexSDK/WeexSDK.h>
+#import "WeexSDK.h"
 
 @interface WXHost : WXComponent
 @property(nonatomic,strong)NSMutableArray *items;

@@ -6,7 +6,7 @@
 //
 //
 
-#import <WeexSDK/WeexSDK.h>
+#import "WeexSDK.h"
 #import "WXEmbedComponent.h"
 
 @interface WXFEmbedComponent: WXEmbedComponent
