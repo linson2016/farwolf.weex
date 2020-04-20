@@ -6,14 +6,14 @@ Pod::Spec.new do |s|
 
   s.name         = "farwolf.weex"
   s.version      = "1.0.2"
-  s.summary      = "Handle some data."
+  s.summary      = "weexplus核心库"
   s.description  = <<-DESC
-                    Handle the data.
+                    weexplus核心库
                    DESC
 
-  s.homepage     = "http://csdn.net/veryitman"
+  s.homepage     = "https://weexplus.github.io/doc/quickstart/"
   s.license      = "MIT"
-  s.author             = { "veryitman" => "veryitman@126.com" }
+  s.author             = { "zjr" => "362675035@.com" }
  s.source       = { :git => "https://github.com/farwolf2010/farwolf.weex.git", :tag => "1.0.2" }
   s.source_files  = "Source", "farwolf.weex/**/*.{h,m,mm,c}"
   s.exclude_files = "Source/Exclude"
@@ -22,14 +22,14 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   
  
-  s.dependency 'farwolf'
-  s.dependency 'PlusWeexSDK'
+  s.dependency 'farwolf', '~> 1.0.2'
+  s.dependency 'PlusWeexSDK', '~> 1.0.15'
   # s.dependency 'farwolf.business', :git => 'https://github.com/farwolf2010/farwolf.business'
   # s.dependency 'WeexSDK', :git => 'https://github.com/farwolf2010/PlusWeexSDK.git'
 
   s.dependency 'Masonry', '~> 0.6.3'
   s.dependency 'SocketRocket','~> 0.4.2' 
-  s.dependency 'RHAddressBook'
+  s.dependency 'RHAddressBook','~> 1.1.1' 
   s.dependency 'CocoaAsyncSocket', '~> 7.6.2'
   s.dependency 'LPPhotoViewer', '~> 0.2.2'
   s.dependency 'HcdDateTimePicker', '~> 1.1.1'
