@@ -108,7 +108,7 @@ WX_EXPORT_METHOD(@selector(reset))
         
     } fail:^(NSString *msg) {
         
-    }  frame:[UIApplication sharedApplication].keyWindow.bounds isPortrait:true];
+    }  frame:[UIApplication sharedApplication].keyWindow.bounds isPortrait:true showloading:false];
  
 }
 

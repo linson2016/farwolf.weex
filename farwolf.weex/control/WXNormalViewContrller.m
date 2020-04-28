@@ -96,6 +96,7 @@ static BOOL isshowErr;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    __weak typeof (self)weakSelf=self;
     printf("viewDidLoad retain count = %ld\n",CFGetRetainCount((__bridge CFTypeRef)(self)));
     self.naviIndex=self.TopViewController.navigationController.childViewControllers.count;
     if(self.isLanscape)
@@ -146,11 +147,8 @@ static BOOL isshowErr;
     _textfields=[NSMutableArray new];
     [_textfields addObjectsFromArray:[self.view findAllViewByType:[UITextField class]]];
     [_textfields addObjectsFromArray:[self.view findAllViewByType:[UITextView class]]];
-    //    [self openWatch:@"192.168.199.248"];
-    
-    //    RefreshManager *r=[RefreshManager new];
-    //    [r open:@"192.168.199.248" port:@"6969"];
-    
+ 
+ 
 }
 
 -(void)loadPage
@@ -177,13 +175,14 @@ static BOOL isshowErr;
         //        [self.instance fireGlobalEvent:@"onPageInit" params:self.param];
         weakSelf.instance.param=weakSelf.param;
         weakSelf.instance.isInit=true;
+         if(!weakSelf.preload)
         [weakSelf.instance firePageInit];
         [weakSelf loadCompelete];
     };
     [self.view addSubview:self.weexView];
-    //    [self.instance fireGlobalEvent:@"onPageInit" params:self.param];
     self.instance.param=_param;
     self.instance.isInit=true;
+    if(self.preload)
     [self.instance firePageInit];
     if(_debug)
     {

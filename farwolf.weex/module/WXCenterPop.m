@@ -52,7 +52,7 @@ WX_EXPORT_METHOD(@selector(dismiss:))
         
     } fail:^(NSString *msg) {
         
-    }  frame:CGRectMake(0, 0, width,height) isPortrait:true];
+    }  frame:CGRectMake(0, 0, width,height) isPortrait:true showloading:false];
     [self regist:@"closecenterpop" method:@selector(close:)];
     
 }

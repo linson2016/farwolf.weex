@@ -85,6 +85,12 @@ WX_EXPORT_METHOD(@selector(invokeNativeCallBack:))
         preload=[parameters[@"preload"] boolValue];
         
     }
+    BOOL showloading=true;
+   if([parameters objectForKey:@"showloading"]!=nil)
+   {
+       showloading=[parameters[@"showloading"] boolValue];
+       
+   }
     if(!isPortrait)
     {
         [self presentFull:parameters callback:callback];
@@ -94,6 +100,7 @@ WX_EXPORT_METHOD(@selector(invokeNativeCallBack:))
     [WeexFactory renderNew:[URL getFinalUrl:url weexInstance:weexInstance] preload:preload compelete:^(WXNormalViewContrller *vc) {
         //        printf("viewDidLoad retain count = %ld\n",CFGetRetainCount((__bridge CFTypeRef)(vc)));
         vc.param=param;
+        vc.preload=preload;
         vc.callback = callback;
         vc.instance.param=param;
         //        printf("viewDidLoad retain count = %ld\n",CFGetRetainCount((__bridge CFTypeRef)(vc)));
@@ -102,7 +109,7 @@ WX_EXPORT_METHOD(@selector(invokeNativeCallBack:))
         
     } fail:^(NSString *msg) {
         
-    }  frame:[UIApplication sharedApplication].keyWindow.bounds isPortrait:isPortrait];
+    }  frame:[UIApplication sharedApplication].keyWindow.bounds isPortrait:isPortrait showloading:showloading];
     
     
 }
@@ -248,6 +255,12 @@ WX_EXPORT_METHOD(@selector(invokeNativeCallBack:))
         preload=[parameters[@"preload"] boolValue];
         
     }
+    BOOL showloading=true;
+      if([parameters objectForKey:@"showloading"]!=nil)
+      {
+          showloading=[parameters[@"showloading"] boolValue];
+          
+      }
     
     __weak typeof (self) weakself=self;
     [WeexFactory renderNew:[URL getFinalUrl:url weexInstance:weexInstance] preload:preload compelete:^(WXNormalViewContrller *vc) {
@@ -256,6 +269,7 @@ WX_EXPORT_METHOD(@selector(invokeNativeCallBack:))
         vc.param=param;
         vc.callback=callback;
         vc.instance.param=param;
+        vc.preload=preload;
         nav.modalPresentationStyle=UIModalPresentationFullScreen;
         [[weakself.weexInstance.viewController TopViewController] presentViewController:nav animated:animated completion:^{
             
@@ -263,7 +277,7 @@ WX_EXPORT_METHOD(@selector(invokeNativeCallBack:))
         
     } fail:^(NSString *msg) {
         
-    }   frame:[UIApplication sharedApplication].keyWindow.bounds isPortrait:isPortrait];
+    }   frame:[UIApplication sharedApplication].keyWindow.bounds isPortrait:isPortrait showloading:showloading];
     
     
     

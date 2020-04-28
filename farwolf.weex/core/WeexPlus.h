@@ -15,6 +15,9 @@
 @interface WeexPlus : NSObject
 +(UIWindow*)init:(NSDictionary*)lanch;
 +(void)addDebugBtn;
++(void)addLoading:(UIWindow*)window;
++(void)showLoading;
++(void)hideLoading;
 @end
 
 

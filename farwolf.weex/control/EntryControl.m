@@ -86,7 +86,7 @@
         [weakSlef addVc:vc];
     } fail:^(NSString *msg) {
         [weakSlef toast:@"启动异常"];
-    }  frame:[UIApplication sharedApplication].keyWindow.frame isPortrait:isPortrait];
+    }  frame:[UIApplication sharedApplication].keyWindow.frame isPortrait:isPortrait showloading:false];
     
     
 

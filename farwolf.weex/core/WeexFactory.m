@@ -9,6 +9,7 @@
 #import "WeexFactory.h"
 #import "Weex.h"
 #import "URL.h"
+#import "WeexPlus.h"
 static NSMutableDictionary *pageCache;
 @implementation WeexFactory
 
@@ -103,10 +104,10 @@ static NSMutableDictionary *pageCache;
          success(sourceURL.absoluteString);
     } fail:^(NSString *s) {
         
-    } frame:[[UIApplication sharedApplication] keyWindow].bounds isPortrait:true];
+    } frame:[[UIApplication sharedApplication] keyWindow].bounds isPortrait:true showloading:false];
 }
 
-+ (void)renderNew:(NSURL *)sourceURL  preload:(BOOL)preload compelete:(void(^)(WXNormalViewContrller*))complete  fail:(void(^)(NSString*))fail frame:(CGRect)frame isPortrait:(BOOL)isPortrait
++ (void)renderNew:(NSURL *)sourceURL  preload:(BOOL)preload compelete:(void(^)(WXNormalViewContrller*))complete  fail:(void(^)(NSString*))fail frame:(CGRect)frame isPortrait:(BOOL)isPortrait showloading:(BOOL)showloading
 {
 
     [Weex initAppBoardContent];
@@ -115,25 +116,17 @@ static NSMutableDictionary *pageCache;
     p.instance.frame =frame;
 //    p.instance.pageObject = self;
     
-  
-    WXNormalViewContrller *vc=[self getCache:sourceURL.absoluteString];
+    __block WXNormalViewContrller *vc = nil;
+    vc=[self getCache:sourceURL.absoluteString];
     if(vc)
     {
         complete(vc);
         return;
     }
     
-//    NSString *newURL = nil;
-    
-//    if ([sourceURL.absoluteString rangeOfString:@"?"].location != NSNotFound) {
-//        newURL = [NSString stringWithFormat:@"%@&random=%d", sourceURL.absoluteString, arc4random()];
-//    } else {
-//        newURL = [NSString stringWithFormat:@"%@?random=%d", sourceURL.absoluteString, arc4random()];
-//    }
-//    [p.instance renderWithURL:[NSURL URLWithString:newURL] options:@{@"bundleUrl":sourceURL.absoluteString} data:nil];
-//    p.instance.scriptURL=[NSURL URLWithString:newURL];
+    if([sourceURL.absoluteString startWith:@"http"]&&showloading)
+    [WeexPlus showLoading];
     [WeexFactory downloadJs:sourceURL.absoluteString instance: p.instance];
-    //    [p.instance renderWithURL:[NSURL URLWithString:newURL] options:@{@"bundleUrl":sourceURL.absoluteString} data:nil];
     p.instance.scriptURL=sourceURL;
     p.url=sourceURL;
     __strong __typeof(p) weakP = p;
@@ -142,14 +135,8 @@ static NSMutableDictionary *pageCache;
         
  
         weakP.weexView=view;
-        WXNormalViewContrller *vc=[[WXNormalViewContrller alloc]initWithSourceURL:sourceURL.absoluteString];
+        vc=[[WXNormalViewContrller alloc]initWithSourceURL:sourceURL.absoluteString];
         vc.isLanscape=!isPortrait;
-       
-//        if(isPortrait)
-//        vc=[[WXNormalViewContrller alloc]initWithSourceURL:sourceURL.absoluteString];
-//        else
-//           vc= [[LanscapeViewContoller alloc]initWithSourceURL:sourceURL.absoluteString];
-//        LanscapeViewContoller
         vc.hidesBottomBarWhenPushed = YES;
         vc.page=weakP;
         vc.navbarVisibility=@"hidden";
@@ -167,19 +154,21 @@ static NSMutableDictionary *pageCache;
            [rootViewController.view addSubview:weakP.weexView];
            [rootViewController addChildViewController:vc];
         }
-       
-       
-        
-        
-        
+        else{
+           [WeexPlus hideLoading];
+           complete(vc);
+            return;
+        }        
     };
     
     weakP.instance.renderFinish = ^(UIView *view) {
+        [WeexPlus hideLoading];
         if(!preload){
+            
             complete(vc);
             return;
         }
-        UIViewController *vc=[view getCurrentVc].childViewControllers[1];
+//        UIViewController *vc=[view getCurrentVc].childViewControllers[1];
         [vc removeFromParentViewController];
         [weakP.weexView removeFromSuperview];
         printf("viewDidLoad retain count = %ld\n",CFGetRetainCount((__bridge CFTypeRef)(vc)));
@@ -188,7 +177,7 @@ static NSMutableDictionary *pageCache;
     };
   
     weakP.instance.onFailed = ^(NSError *error) {
-        
+        [WeexPlus hideLoading];
         NSString *msg=error.userInfo[@"NSLocalizedDescription"];
         NSLog(@"%@", msg);
         fail(msg);
@@ -284,7 +273,7 @@ static NSMutableDictionary *pageCache;
         } fail:^(NSString *msg) {
             fail(msg);
             c=-1;
-        }  frame:[UIApplication sharedApplication].keyWindow.bounds isPortrait:true];
+        }  frame:[UIApplication sharedApplication].keyWindow.bounds isPortrait:true showloading:false];
     }
 }
 

@@ -22,6 +22,7 @@
 //- (instancetype)initWith:(NSString *)url;
 //@property (nonatomic, strong) IQKeyboardReturnKeyHandler    *returnKeyHandler;
  
+@property (strong, nonatomic) UIActivityIndicatorView *loadingAc;
 @property (strong, nonatomic) UIView *toolView;
 @property(strong,nonatomic) UIButton *set;
 @property(strong,nonatomic) UIButton *refresh;
@@ -29,6 +30,7 @@
 @property(nonatomic)BOOL isLanscape;
 @property(nonatomic)BOOL debug;
 @property(nonatomic)BOOL isFinish;
+@property(nonatomic)BOOL preload;
 @property(nonatomic) CGPoint beginpoint;
 
 @property (copy,nonatomic)   typeof(void(^)(NSObject*)) nativeCallback;

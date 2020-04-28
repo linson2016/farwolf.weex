@@ -7,6 +7,7 @@
 
 #import "WeexPlus.h"
 #import "MNFloatBtn.h"
+ 
 
 @implementation WeexPlus
 +(UIWindow*)init:(NSDictionary*)lanch{
@@ -21,6 +22,7 @@
     UIViewController *vc= [Weex start:@"splash" url:[Weex getEntry]];
     window.rootViewController=vc;
     [window makeKeyAndVisible];
+    [WeexPlus addLoading:window];
      [WeexPluginManager initAllEntry:lanch];
     if([Config isDebug])
     {
@@ -51,5 +53,36 @@
         
         NSLog(@" btn.btnClick ~");
     };
+}
+
++(void)addLoading:(UIWindow*)window{
+       UIActivityIndicatorView  * _loadingAc =[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyleWhiteLarge)];
+        [window addSubview:_loadingAc];
+       _loadingAc.color = [UIColor whiteColor];
+       _loadingAc.backgroundColor = [@"#000000" toColor];
+       _loadingAc.hidesWhenStopped = true;
+//       _loadingAc.BorderWidth=10;
+       [_loadingAc mas_makeConstraints:^(MASConstraintMaker *make) {
+           make.center.equalTo(window);
+           make.width.equalTo(@(50));
+           make.height.equalTo(@(50));
+       }];
+       [_loadingAc startAnimating];
+       _loadingAc.hidden=true;
+}
+
++(void)showLoading{
+   UIActivityIndicatorView *loading= [UIApplication.sharedApplication.keyWindow findOneViewByType:[UIActivityIndicatorView class]];
+    loading.hidden=false;
+    [UIApplication.sharedApplication.keyWindow bringSubviewToFront:loading];
+    [loading startAnimating];
+//    [WXPCQHUD showLoading];
+}
++(void)hideLoading{
+   UIActivityIndicatorView *loading= [UIApplication.sharedApplication.keyWindow findOneViewByType:[UIActivityIndicatorView class]];
+    loading.hidden=true;
+    [UIApplication.sharedApplication.keyWindow bringSubviewToFront:loading];
+    [loading stopAnimating];
+//    [WXPCQHUD dismiss];
 }
 @end
