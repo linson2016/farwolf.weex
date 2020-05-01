@@ -141,7 +141,7 @@ static NSMutableDictionary *pageCache;
         vc.page=weakP;
         vc.navbarVisibility=@"hidden";
         vc.sourceURL=sourceURL;
-    
+        vc.preload=preload;
         vc.instance=weakP.instance;
         weakP.instance.frame=frame;
         weakP.instance.viewController=vc;

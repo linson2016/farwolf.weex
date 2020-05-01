@@ -83,6 +83,8 @@
     __weak typeof (self)weakSlef=self;
     [WeexFactory renderNew:url preload:true compelete:^(WXNormalViewContrller *vc) {
         [vc.view setHidden:true];
+         
+//        [weakSlef presentViewController:vc animated:false completion:nil];
         [weakSlef addVc:vc];
     } fail:^(NSString *msg) {
         [weakSlef toast:@"启动异常"];
