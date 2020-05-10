@@ -23,13 +23,17 @@
         NSString *tourl=@"";
         if([dic objectForKey:url]!=nil)
           tourl= dic[url];
-        url=[base add:tourl];
-        if([url startWith:@"http"]){
-            return [NSURL URLWithString:url];
-        }else{
-          
-            return [NSURL URLWithString:url];
+       
+        if(![@"" isEqualToString:tourl]){
+             url=[base add:tourl];
+            if([url startWith:@"http"]){
+                return [NSURL URLWithString:url];
+            }else{
+              
+                return [NSURL URLWithString:url];
+            }
         }
+        
     }
     if([url startWith:@"root:"])
     {
