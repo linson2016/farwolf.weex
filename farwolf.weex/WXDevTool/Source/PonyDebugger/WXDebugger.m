@@ -331,6 +331,9 @@ void _WXLogObjectsImpl(NSString *severity, NSArray *arguments)
     if (_socket && _isConnect) {
         return;
     }
+    if(url==nil){
+        return;
+    }
     _msgAry = nil;
     _msgAry = [NSMutableArray array];
     _debugAry = nil;
