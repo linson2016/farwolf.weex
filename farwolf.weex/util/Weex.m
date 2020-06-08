@@ -305,14 +305,14 @@ static NSMutableDictionary *router;
     //
     //    }
     [[Weex getRefreshManager] send:[@"opendebug" add:@""] ];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(6000 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
-        
-        [WXLog setLogLevel:WXLogLevelLog];
-        [WXDevTool setDebug:YES];
-        NSString *url=[[[[[@"ws://" add:ip]add:@":"]add:port]add:@"/debugProxy/native/"] add:channelId];
-        [WXDevTool launchDevToolDebugWithUrl:url];
-        //        [[Weex getRefreshManager] send:[@"open=" add:channelId] ];
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(6000 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
+//        
+//        [WXLog setLogLevel:WXLogLevelLog];
+//        [WXDevTool setDebug:YES];
+//        NSString *url=[[[[[@"ws://" add:ip]add:@":"]add:port]add:@"/debugProxy/native/"] add:channelId];
+//        [WXDevTool launchDevToolDebugWithUrl:url];
+//        //        [[Weex getRefreshManager] send:[@"open=" add:channelId] ];
+//    });
     
     
     //    debug.fail=^(){
