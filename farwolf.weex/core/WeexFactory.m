@@ -173,6 +173,7 @@ static NSMutableDictionary *pageCache;
         [weakP.weexView removeFromSuperview];
         printf("viewDidLoad retain count = %ld\n",CFGetRetainCount((__bridge CFTypeRef)(vc)));
         complete(vc);
+        vc=nil;
          printf("viewDidLoad retain count = %ld\n",CFGetRetainCount((__bridge CFTypeRef)(vc)));
     };
   
@@ -180,6 +181,7 @@ static NSMutableDictionary *pageCache;
         [WeexPlus hideLoading];
         NSString *msg=error.userInfo[@"NSLocalizedDescription"];
         NSLog(@"%@", msg);
+         vc=nil;
         fail(msg);
         
     };
