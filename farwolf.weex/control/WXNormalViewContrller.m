@@ -246,31 +246,33 @@ static BOOL isshowErr;
 
 -(void)showError:(NSString*)msg
 {
-    if(isshowErr)
-    {
-        return;
-    }
-   
-    //    [self.fail_layout setHidden:false];
-    isshowErr=true;
     
-    ErrorControl *vc=[ErrorControl new];
-    vc.errmsg=msg;
-    __weak typeof(self) weakSelf = self;
-    vc.onClose=^(){
-        isshowErr=false;
-        //        [weakSelf.fail_layout setHidden:false];
-        [vc dismiss:true completion:^{
-            
-        }];
-    };
+   __weak typeof(self) weakSelf = self;
     
-    
-    
-    
-    [self.TopViewController presentViewController:vc animated:true completion:^{
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        if(isshowErr)
+         {
+             return;
+         }
         
-    }];
+         //    [self.fail_layout setHidden:false];
+         isshowErr=true;
+         ErrorControl *vc=[ErrorControl new];
+         vc.errmsg=msg;
+         vc.onClose=^(){
+             isshowErr=false;
+             //        [weakSelf.fail_layout setHidden:false];
+             [vc dismiss:true completion:^{
+                 
+             }];
+         };
+        
+         [weakSelf.TopViewController presentViewController:vc animated:true completion:^{
+             
+         }];
+    });
+    
+    
     
     
     
