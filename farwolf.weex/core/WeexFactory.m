@@ -173,8 +173,9 @@ static NSMutableDictionary *pageCache;
         [weakP.weexView removeFromSuperview];
         printf("viewDidLoad retain count = %ld\n",CFGetRetainCount((__bridge CFTypeRef)(vc)));
         complete(vc);
+        printf("viewDidLoad retain count = %ld\n",CFGetRetainCount((__bridge CFTypeRef)(vc)));
         vc=nil;
-         printf("viewDidLoad retain count = %ld\n",CFGetRetainCount((__bridge CFTypeRef)(vc)));
+      
     };
   
     weakP.instance.onFailed = ^(NSError *error) {
