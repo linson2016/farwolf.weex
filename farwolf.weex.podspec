@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
  
 
   s.name         = "farwolf.weex"
-  s.version      = "1.0.17"
+  s.version      = "1.0.18"
   s.summary      = "weexplus核心库"
   s.description  = <<-DESC
                     weexplus核心库
@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://weexplus.github.io/doc/quickstart/"
   s.license      = "MIT"
   s.author             = { "zjr" => "362675035@.com" }
- s.source       = { :git => "https://github.com/farwolf2010/farwolf.weex.git", :tag => "1.0.17" }
+ s.source       = { :git => "https://github.com/farwolf2010/farwolf.weex.git", :tag => "1.0.18" }
   s.source_files  = "Source", "farwolf.weex/**/*.{h,m,mm,c}"
   s.exclude_files = "Source/Exclude"
   s.resources = 'farwolf.weex/resources/storyboard/**','farwolf.weex/resources/image/**','farwolf.weex/resources/xib/**'
@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   
  
-  s.dependency 'farwolf', '~> 1.0.3'
+  s.dependency 'farwolf', '~> 1.0.7'
   s.dependency 'PlusWeexSDK', '~> 1.0.16'
   # s.dependency 'farwolf.business', :git => 'https://github.com/farwolf2010/farwolf.business'
   # s.dependency 'WeexSDK', :git => 'https://github.com/farwolf2010/PlusWeexSDK.git'
