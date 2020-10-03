@@ -266,7 +266,7 @@ static BOOL isshowErr;
                  
              }];
          };
-        
+         vc.modalPresentationStyle=UIModalPresentationFullScreen;
          [weakSelf.TopViewController presentViewController:vc animated:true completion:^{
              
          }];

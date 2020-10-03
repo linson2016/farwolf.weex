@@ -49,39 +49,24 @@ NSString * const _URL = @"http://doc2.renturbo.com/upload/";
     
  NSString* url=[self getUrl];
     
-    
-    
-    // 发送请求 urlstr是地址
-    [manager POST:url parameters:self.param constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        
+    [manager POST:url parameters:self.param headers:@{} constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSArray *nx= self.stream.allKeys;
         
         for(NSString *key in nx)
         {
             NSObject *o= self.stream[key];
-//            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//            formatter.dateFormat = @"yyyyMMddHHmmss";
-//            NSString *str = [formatter stringFromDate:[NSDate date]];
-//            NSString *fileName = [NSString stringWithFormat:@"%@.png", str];
-//            NSData *data = UIImageJPEGRepresentation((UIImage*)o, 1.0);
-//            [formData appendPartWithFileData:data name:key fileName:fileName mimeType:@"image/png"];
             [formData appendPartWithFileData:o name:key fileName:key mimeType:@"application/octet-stream"];
             
         }
-        // 上传文件设置
-//        [formData appendPartWithFileData:data name:@"image" fileName:@"image" mimeType:@"image/jpg"];
-        
-    } success:^(NSURLSessionDataTask *operation, id responseObject) {
-        
-        // 成功
-        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+         
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"Success: %@", responseObject);
-        
-        
-    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
-        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"Error: %@", error.userInfo[@"NSLocalizedDescription"]);
     }];
+    
+    
 }
 
 -(Json*)getDecoder
@@ -176,7 +161,7 @@ NSString * const _URL = @"http://doc2.renturbo.com/upload/";
     NSLog(@"url=%@",url);
     NSLog(@"param=%@",self.param);
     NSArray *n= self.param.allKeys;
-    [manager POST:url parameters:self.param constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [manager POST:url parameters:self.param headers:@{} constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSArray *nx= self.stream.allKeys;
         for(NSString *key in nx)
         {
@@ -185,26 +170,13 @@ NSString * const _URL = @"http://doc2.renturbo.com/upload/";
             
         }
     } progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-        
-        //         NSLog(@"Success: %d,%d", uploadProgress.completedUnitCount ,uploadProgress.totalUnitCount);
         progress( uploadProgress.completedUnitCount,uploadProgress.totalUnitCount);
-        
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         @try {
             //            NSLog(@"Success: %@", [responseObject class]);
             NSLog(@"Success: %@", responseObject );
             FileJson *res=[[self getDecoder] initWithNSData:responseObject];
-            //            if([res isSuccess])
-            //            {
             success(res);
-            //            }
-            //            else
-            //            {
-            //                fail(res,[res getErrorCode],[res getErrorMsg]);
-            //                //                [j fail:[res getErrorCode] errmsg:[res getErrorMsg] json:res];
-            //            }
-            
         }
         @catch (NSException *excep) {
             
@@ -219,6 +191,7 @@ NSString * const _URL = @"http://doc2.renturbo.com/upload/";
         exception();
         compelete();
     }];
+     
     
     
 }
@@ -249,21 +222,13 @@ NSString * const _URL = @"http://doc2.renturbo.com/upload/";
         [manager.requestSerializer setValue:v forHTTPHeaderField:key];
     }
 //    [manager.requestSerializer setValue:@"multipart/form-data;charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    [manager POST:url parameters:self.param constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        
-        
+    [manager POST:url parameters:self.param headers:@{} constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
         NSArray *nx= self.stream.allKeys;
         
         for(NSString *key in nx)
         {
             NSObject *o= self.stream[key];
-//            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//            formatter.dateFormat = @"yyyyMMddHHmmss";
-//            NSString *str = [formatter stringFromDate:[NSDate date]];
-//            NSString *fileName = [NSString stringWithFormat:@"%@.png", str];
-//            NSData *data = UIImageJPEGRepresentation((UIImage*)o, 1.0);
-//            [formData appendPartWithFileData:data name:key fileName:fileName mimeType:@"image/png"];
             NSString *weg=self.wegs[key];
             if(weg==nil){
                 weg=key;
@@ -271,26 +236,18 @@ NSString * const _URL = @"http://doc2.renturbo.com/upload/";
             [formData appendPartWithFileData:o name:key fileName:weg mimeType:@"application/octet-stream"];
 //            [self postUpload:(UIImage*)o];
         }
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
         
-    } success:^(NSURLSessionDataTask * _Nonnull operation, id  _Nonnull responseObject) {
-        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         @try {
           
             
           
             NSLog(@"Success: %@", responseObject );
-            NSHTTPURLResponse* response = operation.response;
-            NSString* sessionId = [NSString stringWithFormat:@"%@",[[response.allHeaderFields[@"Set-Cookie"]componentsSeparatedByString:@";"]objectAtIndex:0]];
-
             NSData *jsonData = [NSJSONSerialization dataWithJSONObject:responseObject options:NSJSONWritingPrettyPrinted error:nil];
-            
             NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
  
-            
-//            NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-            //            NSLog(result);
-            
-            success(jsonString,sessionId);
+            success(jsonString,@"");
         
             
         }
@@ -301,14 +258,13 @@ NSString * const _URL = @"http://doc2.renturbo.com/upload/";
         @finally {
             compelete();
         }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable operation, NSError * _Nonnull error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"失败");
         NSLog(@"%@", error.userInfo[@"NSLocalizedDescription"]);
         exception();
         compelete();
     }];
-    
+     
 }
 
 
@@ -316,32 +272,32 @@ NSString * const _URL = @"http://doc2.renturbo.com/upload/";
 - (void)postUpload:(UIImage*)img
 {
     // 本地上传给服务器时,没有确定的URL,不好用MD5的方式处理
-     AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
-    [manager POST:@"http://127.0.0.1:8080/imgupload.do" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        
-        NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"头像1.png" withExtension:nil];
-        
-        // 要上传保存在服务器中的名称
-        // 使用时间来作为文件名 2014-04-30 14:20:57.png
-        // 让不同的用户信息,保存在不同目录中
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        // 设置日期格式
-        formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-        NSString *fileName = [formatter stringFromDate:[NSDate date]];
-        NSData *data = UIImageJPEGRepresentation((UIImage*)img, 1.0);
-//        [formData appendPartWithFileData:data name:@"file" fileName:fileName mimeType:@"image/png" error:NULL];
-        
-        [formData appendPartWithFileData:data name:@"file" fileName:fileName mimeType:@"image/png"];
-        
-        
-    } success:^(NSURLSessionDataTask *operation, id responseObject) {
-        NSLog(@"OK");
-    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
-        NSLog(@"error");
-    }];
+//     AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
+////    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//
+//    [manager POST:@"http://127.0.0.1:8080/imgupload.do" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//
+//        NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"头像1.png" withExtension:nil];
+//
+//        // 要上传保存在服务器中的名称
+//        // 使用时间来作为文件名 2014-04-30 14:20:57.png
+//        // 让不同的用户信息,保存在不同目录中
+//        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//        // 设置日期格式
+//        formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//        NSString *fileName = [formatter stringFromDate:[NSDate date]];
+//        NSData *data = UIImageJPEGRepresentation((UIImage*)img, 1.0);
+////        [formData appendPartWithFileData:data name:@"file" fileName:fileName mimeType:@"image/png" error:NULL];
+//
+//        [formData appendPartWithFileData:data name:@"file" fileName:fileName mimeType:@"image/png"];
+//
+//
+//    } success:^(NSURLSessionDataTask *operation, id responseObject) {
+//        NSLog(@"OK");
+//    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+//        NSLog(@"error");
+//    }];
 }
 
 
@@ -381,25 +337,19 @@ success:(void(^)(Json*j))success
     NSLog(@"url=%@",url);
     NSLog(@"param=%@",self.param);
     NSArray *n= self.param.allKeys;
-    [manager POST:url parameters:self.param constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [manager POST:url parameters:self.param headers:@{} constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
         NSArray *nx= self.stream.allKeys;
         
         for(NSString *key in nx)
         {
             NSObject *o= self.stream[key];
-//            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//            formatter.dateFormat = @"yyyyMMddHHmmss";
-//            NSString *str = [formatter stringFromDate:[NSDate date]];
-//            NSString *fileName = [NSString stringWithFormat:@"%@.png", str];
-//            NSData *data = UIImageJPEGRepresentation((UIImage*)o, 1.0);
-//            [formData appendPartWithFileData:data name:key fileName:fileName mimeType:@"image/png"];
             [formData appendPartWithFileData:o name:key fileName:key mimeType:@"application/octet-stream"];
  
         }
-        
-    } success:^(NSURLSessionDataTask * _Nonnull operation, id  _Nonnull responseObject) {
-        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+         
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         @try {
 //            NSLog(@"Success: %@", [responseObject class]);
             NSLog(@"Success: %@", responseObject );
@@ -425,14 +375,13 @@ success:(void(^)(Json*j))success
         @finally {
             [j compelete];
         }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable operation, NSError * _Nonnull error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"失败");
         NSLog(@"%@", error.userInfo[@"NSLocalizedDescription"]);
         [j exception];
         [j compelete];
     }];
-    
+     
 }
 
 

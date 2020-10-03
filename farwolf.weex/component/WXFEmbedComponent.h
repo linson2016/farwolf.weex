@@ -11,4 +11,8 @@
 
 @interface WXFEmbedComponent: WXEmbedComponent
 @property (nonatomic, strong) NSMutableDictionary *param;
+//zjr
+-(void)loadUrl:(NSString*)url instance:(WXSDKInstance*)instance sourceurl:(NSURL*)sourceURL;
+-(void)onRenderFinish;
+-(WXSDKInstance*)getInstance;
 @end

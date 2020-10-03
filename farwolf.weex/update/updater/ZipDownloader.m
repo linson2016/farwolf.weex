@@ -44,10 +44,11 @@
         [request setValue:range forHTTPHeaderField:@"Range"];
         
         __weak typeof(self) weakSelf = self;
-        
-        _downloadTask = [self.manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-            
-            // 下载完成回调block
+        _downloadTask= [self.manager dataTaskWithRequest:request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
+             
+        } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
+             
+        } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
             NSLog(@"完成");
             if(error!=nil)
             {
@@ -62,8 +63,26 @@
             [weakSelf.fileHandle closeFile];
             weakSelf.fileHandle = nil;
             compelete(_path);
-            
         }];
+//        _downloadTask = [self.manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+//            
+//            // 下载完成回调block
+//            NSLog(@"完成");
+//            if(error!=nil)
+//            {
+//                exception(error);
+//            }
+//            
+//            // 清空长度
+//            weakSelf.currentLength = 0;
+//            weakSelf.totalLength = 0;
+//            
+//            // 关闭fileHandle
+//            [weakSelf.fileHandle closeFile];
+//            weakSelf.fileHandle = nil;
+//            compelete(_path);
+//            
+//        }];
         
         [self.manager setDataTaskDidReceiveResponseBlock:^NSURLSessionResponseDisposition(NSURLSession * _Nonnull session, NSURLSessionDataTask * _Nonnull dataTask, NSURLResponse * _Nonnull response) {
             NSLog(@"启动任务");

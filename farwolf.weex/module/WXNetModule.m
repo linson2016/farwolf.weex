@@ -220,33 +220,63 @@ WX_EXPORT_METHOD_SYNC(@selector(getSessionId:))
     [request setHTTPBody:postData];
     
     start(@{},false);
-    [[manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        @try {
-            //            NSLog(@"Success: %@", [responseObject class]);
+    [[manager dataTaskWithRequest:request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
             
-            NSData *data =    [NSJSONSerialization dataWithJSONObject:responseObject options:NSJSONWritingPrettyPrinted error:nil];
-            NSString *result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            //            NSLog(result);
-            //            NSHTTPURLResponse* response = operation.response;
+        } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
             
-            //            NSString  *cookie=response.allHeaderFields[@"Set-Cookie"];
-            NSData* jsondata = [result dataUsingEncoding:NSUTF8StringEncoding];
-            id dx=   [NSJSONSerialization JSONObjectWithData:jsondata options:NSJSONReadingMutableLeaves error:nil];
-            success(@{@"res":dx,@"sessionid":@""},false);
-            
-        }
-        @catch (NSException *excep) {
-            
-            exception(@{},false);
-        }
-        @finally {
-            NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL: [NSURL URLWithString:url]];
-            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:cookies];
-            [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"cookiecache"];
-            compelete(@{},false);
-        }
-        
-    }] resume];
+        } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+            @try {
+                //            NSLog(@"Success: %@", [responseObject class]);
+                
+                NSData *data =    [NSJSONSerialization dataWithJSONObject:responseObject options:NSJSONWritingPrettyPrinted error:nil];
+                NSString *result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                //            NSLog(result);
+                //            NSHTTPURLResponse* response = operation.response;
+                
+                //            NSString  *cookie=response.allHeaderFields[@"Set-Cookie"];
+                NSData* jsondata = [result dataUsingEncoding:NSUTF8StringEncoding];
+                id dx=   [NSJSONSerialization JSONObjectWithData:jsondata options:NSJSONReadingMutableLeaves error:nil];
+                success(@{@"res":dx,@"sessionid":@""},false);
+                
+            }
+            @catch (NSException *excep) {
+                
+                exception(@{},false);
+            }
+            @finally {
+                NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL: [NSURL URLWithString:url]];
+                NSData *data = [NSKeyedArchiver archivedDataWithRootObject:cookies];
+                [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"cookiecache"];
+                compelete(@{},false);
+            }
+        }] resume];
+//    [[manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+//        @try {
+//            //            NSLog(@"Success: %@", [responseObject class]);
+//
+//            NSData *data =    [NSJSONSerialization dataWithJSONObject:responseObject options:NSJSONWritingPrettyPrinted error:nil];
+//            NSString *result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//            //            NSLog(result);
+//            //            NSHTTPURLResponse* response = operation.response;
+//
+//            //            NSString  *cookie=response.allHeaderFields[@"Set-Cookie"];
+//            NSData* jsondata = [result dataUsingEncoding:NSUTF8StringEncoding];
+//            id dx=   [NSJSONSerialization JSONObjectWithData:jsondata options:NSJSONReadingMutableLeaves error:nil];
+//            success(@{@"res":dx,@"sessionid":@""},false);
+//
+//        }
+//        @catch (NSException *excep) {
+//
+//            exception(@{},false);
+//        }
+//        @finally {
+//            NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL: [NSURL URLWithString:url]];
+//            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:cookies];
+//            [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"cookiecache"];
+//            compelete(@{},false);
+//        }
+//
+//    }] resume];
 }
 
 
