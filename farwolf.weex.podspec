@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
  
 
   s.name         = "farwolf.weex"
-  s.version      = "1.0.18"
+  s.version      = "1.0.19"
   s.summary      = "weexplus核心库"
   s.description  = <<-DESC
                     weexplus核心库
@@ -12,11 +12,11 @@ Pod::Spec.new do |s|
   s.homepage     = "https://weexplus.github.io/doc/quickstart/"
   s.license      = "MIT"
   s.author             = { "zjr" => "362675035@.com" }
- s.source       = { :git => "https://github.com/farwolf2010/farwolf.weex.git", :tag => "1.0.18" }
+ s.source       = { :git => "https://github.com/farwolf2010/farwolf.weex.git", :tag => "1.0.19" }
   s.source_files  = "Source", "farwolf.weex/**/*.{h,m,mm,c}"
   s.exclude_files = "Source/Exclude"
   s.resources = 'farwolf.weex/resources/storyboard/**','farwolf.weex/resources/image/**','farwolf.weex/resources/xib/**'
-  s.platform     = :ios, "8.0"
+  s.platform     = :ios, "9.0"
   s.requires_arc = true
   
  
