@@ -46,6 +46,9 @@
 #import "WXKeyboardModule.h"
 #import "WXDeviceInfoModule.h"
 #import "WXFLogModule.h"
+#import "EBWXModule.h"
+#import "EBWXOldModule.h"
+
 static NSString * routerContent;
 static NSMutableDictionary *router;
 @implementation Weex
@@ -82,7 +85,8 @@ static NSMutableDictionary *router;
     [WXSDKEngine registerModule:@"device" withClass:[WXDeviceInfoModule class]];
     [WXSDKEngine registerModule:@"keyboard" withClass:[WXKeyboardModule class]];
     [WXSDKEngine registerModule:@"log" withClass:[WXFLogModule class]];
-    
+    [WXSDKEngine registerModule:@"bindingx" withClass:[EBWXModule class]];
+    [WXSDKEngine registerModule:@"expressionBinding" withClass:[EBWXOldModule class]];
     
     [WXSDKEngine registerHandler:[WXEventModule new] withProtocol:@protocol(WXEventModuleProtocol)];
     [WXSDKEngine registerHandler:[WXImgLoaderDefaultImpl new] withProtocol:@protocol(WXImgLoaderProtocol)];
