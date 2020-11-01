@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://weexplus.github.io/doc/quickstart/"
   s.license      = "MIT"
   s.author             = { "zjr" => "362675035@.com" }
- s.source       = { :git => "https://github.com/farwolf2010/farwolf.weex.git", :tag => "1.0.21" }
+ s.source       = { :git => "https://github.com/farwolf2010/farwolf.weex.git", :tag => "1.0.22" }
   s.source_files  = "Source", "farwolf.weex/**/*.{h,m,mm,c}"
   s.exclude_files = "Source/Exclude"
   s.resources = 'farwolf.weex/resources/storyboard/**','farwolf.weex/resources/image/**','farwolf.weex/resources/xib/**'
