@@ -37,10 +37,14 @@
 {
  
 //     NSLog([@"loader:" add: url]);
-    if([url contains:@"base64==="])
+    
+    if([self isBase64:url])
     {
-        NSArray *n= [url split:@"base64==="];
-        url=n[1];
+        NSData *decodeData = [[NSData alloc]initWithBase64EncodedString:url options:(NSDataBase64DecodingIgnoreUnknownCharacters)];
+        // 将NSData转为UIImage
+        UIImage *decodedImage = [UIImage imageWithData: decodeData];
+        completedBlock(decodedImage, nil, nil);
+        return  nil;;
     }
     if([url startWith:@"root:"])
     {
@@ -94,6 +98,14 @@
             completedBlock(image, error, finished);
         }
     }];
+}
+
+-(BOOL)isBase64:(NSString*)url{
+    NSString *pattern=   @"^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$";
+    NSRegularExpression * reg=[[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionDotMatchesLineSeparators error:nil];
+    NSArray * array= [reg matchesInString:url options:NSMatchingReportCompletion range:NSMakeRange(0, [url length])];
+ 
+    return array.count>0;
 }
 
 // 读取并存贮到相册

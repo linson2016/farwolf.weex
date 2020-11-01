@@ -47,7 +47,9 @@
 #import "WXDeviceInfoModule.h"
 #import "WXFLogModule.h"
 #import "EBWXModule.h"
+#import "WXPlusURLRewriteImpl.h"
 #import "EBWXOldModule.h"
+#import "WXURLRewriteProtocol.h"
 
 static NSString * routerContent;
 static NSMutableDictionary *router;
@@ -59,7 +61,7 @@ static NSMutableDictionary *router;
     [WXAppConfiguration setAppGroup:group];
     [WXAppConfiguration setAppName:appName];
     [WXAppConfiguration setAppVersion:appVersion];
-    
+
     [WXSDKEngine initSDKEnvironment];
     [WXSDKEngine registerModule:@"navigator" withClass:[WXNavigationModule class]];
     [WXSDKEngine registerModule:@"navbar" withClass:[WXNavBarModule class]];
@@ -92,6 +94,9 @@ static NSMutableDictionary *router;
     [WXSDKEngine registerHandler:[WXImgLoaderDefaultImpl new] withProtocol:@protocol(WXImgLoaderProtocol)];
     [WXSDKEngine registerHandler:[JSExceptionProtocolImpl new] withProtocol:@protocol(WXJSExceptionProtocol)];
     [WXSDKEngine registerHandler:[WXWebSocketDefaultImpl new] withProtocol:@protocol(WXWebSocketHandler)];
+    [WXSDKEngine registerHandler:[WXPlusURLRewriteImpl new] withProtocol:@protocol(WXURLRewriteProtocol)];
+
+//    [WXSDKEngine registerHandler:[WXURLRewriteProtocol new] withProtocol:@protocol(WXURLRewriteProtocol)];
     
     [WXSDKEngine registerComponent:@"a" withClass:[WXPushComponent class]];
     [WXSDKEngine registerComponent:@"floading" withClass:[WXLoadingView class]];

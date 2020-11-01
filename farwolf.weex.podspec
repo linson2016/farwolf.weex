@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
  
 
   s.name         = "farwolf.weex"
-  s.version      = "1.0.21"
+  s.version      = "1.0.22"
   s.summary      = "weexplus核心库"
   s.description  = <<-DESC
                     weexplus核心库
