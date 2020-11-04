@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   # s.dependency 'farwolf.business', :git => 'https://github.com/farwolf2010/farwolf.business'
   # s.dependency 'WeexSDK', :git => 'https://github.com/farwolf2010/PlusWeexSDK.git'
 
-  s.dependency 'Masonry', '~> 0.6.3'
+  s.dependency 'Masonry', '~> 1.1.0'
   s.dependency 'SocketRocket','~> 0.4.2' 
   s.dependency 'RHAddressBook','~> 1.1.1' 
   s.dependency 'CocoaAsyncSocket', '~> 7.6.2'
